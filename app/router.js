@@ -6,14 +6,18 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route("index", {path: "/"});
-  this.resource('sessions', function() {
-    this.route('new');
+  this.route('index');
+  this.route('authentication', {path: '/'}, function() {
+    this.route('login', {path: '/login'});
   });
-  this.resource('users', function() {
+  this.route('users', function() {
     this.route('new');
-  })
-  this.route('top_secret');
+    this.route('show');
+  });
+
+  this.route('user', function() {
+    this.route('show');
+  });
 });
 
 export default Router;

@@ -1,16 +1,12 @@
 import Ember from 'ember';
-import AuthManager from '../auth_manager';
 import App from '../app';
 
 export default Ember.Route.extend({
-  init: function() {
-    this._super();
-    App.AuthManager = AuthManager.create({store: this.store});
-  },
-  events: {
+  actions: {
     logout: function() {
-      App.AuthManager.reset();
-      this.transitionTo('sessions.new');
+      this.set('localStorageProxy.accessToken', null);
+      this.set('localStorageProxy.userId', null);
+      this.transitionTo('index');
     }
   }
 });

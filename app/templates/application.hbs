@@ -14,14 +14,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>{{link-to 'Top Secret' 'top_secret'}}</li>
 
         {{#if isAuthenticated}}
         <li>{{#link-to 'users.show' currentUser}}{{currentUser.username}}{{/link-to}}</li>
           <li><a href="#" {{action 'logout'}}>Logout</a></li>
         {{else}}
           <li>{{link-to 'Register' 'users.new'}}</li>
-          <li>{{link-to 'Login' 'sessions.new'}}</li>
+          <li>{{link-to 'Show' 'users.show'}}</li>
+          <li>{{link-to 'Login' 'authentication.login'}}</li>
         {{/if}}
       </ul>
     </div><!-- /.navbar-collapse -->
