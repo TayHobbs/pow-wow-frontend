@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import App from '../../app';
-import ENV from 'pow-wow-frontend/config/environment'
+import ENV from 'pow-wow-frontend/config/environment';
 
 export default Ember.ObjectController.extend({
   attemptedTransition: null,
@@ -13,12 +13,10 @@ export default Ember.ObjectController.extend({
       var rememberMe = this.get('remember_me');
       var attemptedTrans = this.get('attemptedTransition');
 
-      Ember.$.post('http://localhost:3000/api/v1/auth/login', data, function(results) {
+      Ember.$.post('http://localhost:3000/session', data, function(results) {
 
-        ENV.APP.authToken = results
-        console.log("ENV~");
-        console.log(ENV.APP.authToken);
-        App.AuthManager.authenticate(results.token, results.user_id, rememberMe);
+        ENV.APP.authToken = results.api_key;
+        App.AuthManager.authenticate(results.api_key.access_token, results.api_key.user_id, rememberMe);
 
         if (attemptedTrans) {
           attemptedTrans.retry();
