@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
     loginUser: function() {
       var controller = this;
       var attemptedTransition = this.get('attemptedTransition');
+      var router = this.get('target');
       var data = this.getProperties('login', 'password')
 
       Ember.$.post(ENV.apiDomain.concat('session'), data, function(results) {
@@ -31,7 +32,7 @@ export default Ember.Controller.extend({
           attemptedTransition.retry();
           controller.set('attemptedTransition', null);
         } else {
-          this.get('target').transitionTo('index');
+          router.transitionTo('index');
         }
       });
     }
