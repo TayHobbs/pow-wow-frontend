@@ -9,15 +9,9 @@ Router.map(function() {
   this.route('index');
   this.route('authentication', {path: '/'}, function() {
     this.route('login', {path: '/login'});
+    this.route('logout', {path: '/logout'});
   });
-  this.route('users', function() {
-    this.route('new');
-    this.route('show');
-  });
-
-  this.route('user', function() {
-    this.route('show');
-  });
+  this.route('users');
 });
 
 export default Router;
