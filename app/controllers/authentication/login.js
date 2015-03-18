@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
       var attemptedTransition = this.get('attemptedTransition');
       var data = this.getProperties('login', 'password')
 
-      Ember.$.post('http://localhost:3000/session', data, function(results) {
+      Ember.$.post(ENV.apiDomain.concat('session'), data, function(results) {
         var apiKey = results.api_key
 
         ENV.APP.authToken = apiKey;
