@@ -5,12 +5,12 @@ export default Ember.Controller.extend({
   attemptedTransition: null,
 
   preformTransition: function() {
-    attemptedTransition = this.get('attemptedTransition')
+    var attemptedTransition = this.get('attemptedTransition');
     if (attemptedTransition) {
-      attemptedTransition.retry()
-      this.setProperties('attemptedTransition', null)
+      attemptedTransition.retry();
+      this.setProperties('attemptedTransition', null);
     } else {
-      this.transitionToRoute('index')
+      this.transitionToRoute('index');
     }
   },
 
@@ -19,10 +19,10 @@ export default Ember.Controller.extend({
       var controller = this;
       var attemptedTransition = this.get('attemptedTransition');
       var router = this.get('target');
-      var data = this.getProperties('login', 'password')
+      var data = this.getProperties('login', 'password');
 
       Ember.$.post(ENV.apiDomain.concat('session'), data, function(results) {
-        var apiKey = results.api_key
+        var apiKey = results.api_key;
 
         ENV.APP.authToken = apiKey;
         controller.set('localStorageProxy.accessToken', apiKey.access_token);
