@@ -40,7 +40,6 @@ var localStorageProxy = {
   initialize: function(container, application) {
     application.register('localStorageProxy:main', LocalStorageProxy);
     application.inject('controller', 'localStorageProxy', 'localStorageProxy:main');
-    application.inject('adapter', 'localStorageProxy', 'localStorageProxy:main');
     return application.inject('route', 'localStorageProxy', 'localStorageProxy:main');
   }
 };
