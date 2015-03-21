@@ -35,7 +35,6 @@ var LocalStorageProxy = Ember.Object.extend({
 });
 
 var localStorageProxy = {
-  before: 'ember-data',
   name: 'localStorageProxy',
   initialize: function(container, application) {
     application.register('localStorageProxy:main', LocalStorageProxy);
