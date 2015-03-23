@@ -19,23 +19,31 @@ export default Ember.Controller.extend({
       var controller = this;
       var attemptedTransition = this.get('attemptedTransition');
       var router = this.get('target');
-      var data = this.getProperties('login', 'password');
 
-      Ember.$.post(ENV.apiDomain.concat('session'), data, function(results) {
-        var apiKey = results.api_key;
+      Ember.$.ajax({
+        type: "POST",
+        url: ENV.apiDomain.concat('session'),
+        data: {login: this.get('login'), password: this.get('password')},
+        success: function(results) {
+          var apiKey;
+          apiKey = results.api_key;
+          ENV.APP.authToken = apiKey;
+          controller.set('localStorageProxy.accessToken', apiKey.access_token);
+          controller.set('localStorageProxy.userId', apiKey.user_id);
 
-        ENV.APP.authToken = apiKey;
-        controller.set('localStorageProxy.accessToken', apiKey.access_token);
-        controller.set('localStorageProxy.userId', apiKey.user_id);
-
-        if (attemptedTransition) {
-          attemptedTransition.retry();
-          controller.set('attemptedTransition', null);
-        } else {
-          router.transitionTo('index');
+          if (attemptedTransition) {
+            attemptedTransition.retry();
+            controller.set('attemptedTransition', null);
+          } else {
+            router.transitionTo('index');
+          }
+        },
+        fail: function(jqXHR, status, error) {
+          console.log(error);
+          console.log(status);
+          return jqXHR;
         }
       });
     }
   }
 });
-
