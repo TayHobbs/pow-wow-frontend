@@ -9,7 +9,6 @@ Router.map(function() {
   this.route('index');
   this.route('authentication', {path: '/'}, function() {
     this.route('login', {path: '/login'});
-    this.route('logout', {path: '/logout'});
   });
   this.route('users');
 });
