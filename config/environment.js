@@ -20,7 +20,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    ENV.apiDomain = 'http://localhost:3000/'
+    ENV.apiDomain = 'http://localhost:3000/';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -29,6 +29,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
+    ENV.apiDomain = 'http://powwowapi.com/';
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
