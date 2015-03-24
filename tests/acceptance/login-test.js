@@ -1,9 +1,7 @@
 import Ember from 'ember';
-import {
-  module,
-  test
-} from 'qunit';
-import startApp from 'pow-wow-frontend/tests/helpers/start-app';
+import { module, test } from 'qunit';
+import startApp from '../helpers/start-app';
+import { loginEndpoint } from '../helpers/mock-helpers';
 
 var application;
 
@@ -22,5 +20,19 @@ test('visiting /login', function(assert) {
 
   andThen(function() {
     assert.equal(currentPath(), 'authentication.login');
+  });
+});
+
+test('login', function(assert) {
+  loginEndpoint()
+  visit('/login');
+
+  fillIn('#login', 'test@test.com');
+  fillIn('#password', 'testing1');
+  click('button[type=submit]')
+  andThen(function() {
+    assert.equal(localStorage.accessToken, 'abc123');
+    assert.equal(localStorage.userId, 1);
+    assert.equal(currentPath(), 'index');
   });
 });

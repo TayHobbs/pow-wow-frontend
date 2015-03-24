@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
       var router = this.get('target');
 
       Ember.$.ajax({
-        type: "POST",
+        method: "POST",
         url: ENV.apiDomain.concat('session'),
         data: {login: this.get('login'), password: this.get('password')},
         success: function(results) {
