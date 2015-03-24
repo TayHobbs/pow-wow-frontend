@@ -21,7 +21,7 @@
         {{else}}
           <li>{{link-to 'Register' 'users'}}</li>
           <li>{{link-to 'Login' 'authentication.login'}}</li>
-          <li {{action "logout"}}><a href="#">Logout</a></li>
+          <li id="logout"{{action "logout"}}><a href="#">Logout</a></li>
         {{/if}}
       </ul>
     </div><!-- /.navbar-collapse -->

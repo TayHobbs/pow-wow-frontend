@@ -10,6 +10,8 @@ var application;
 module('Acceptance: Logout', {
   beforeEach: function() {
     application = startApp();
+    localStorage.accessToken = 'abc123';
+    localStorage.userId = 1;
   },
 
   afterEach: function() {
@@ -17,10 +19,18 @@ module('Acceptance: Logout', {
   }
 });
 
-test('visiting /logout', function(assert) {
-  visit('/logout');
+test('logout action clears local storage', function(assert) {
+  visit('/index');
 
   andThen(function() {
-    assert.equal(currentPath(), 'authentication.logout');
+    assert.equal(localStorage.accessToken, 'abc123');
+    assert.equal(localStorage.userId, 1);
+
+    click('#logout');
+    andThen(function() {
+      assert.equal(localStorage.accessToken, null);
+      assert.equal(localStorage.userId, null);
+      assert.equal(currentPath(), 'index');
+    });
   });
 });
