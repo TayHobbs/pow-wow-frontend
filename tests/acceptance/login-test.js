@@ -12,13 +12,12 @@ module('Acceptance: Login', {
 
   afterEach: function(assert) {
     Ember.run(application, 'destroy');
-    confirmFaux(assert);
     $.fauxjax.clear();
   }
 });
 
 test('visiting /login', function(assert) {
-  visit('/login');
+  visit('/authentication/login');
 
   andThen(function() {
     assert.equal(currentPath(), 'authentication.login');
@@ -32,13 +31,13 @@ test('access token is stored in local storage', function(assert) {
     dataType: 'json',
     responseText: {
       api_key: {
-        access_token: "d7a31c8423c6045d9beda1e774d6a105",
-        id: 40,
+        access_token: 'abc123',
+        id: 1,
         user_id: 1
       }
     }
   });
-  visit('/login');
+  visit('/authentication/login');
   fillIn('#login', 'testuser@test.com');
   fillIn('#password', 'testing1');
   click('button[type=submit]');

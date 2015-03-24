@@ -29,7 +29,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
-    ENV.apiDomain = 'http://powwowapi.com/';
+    ENV.apiDomain = 'https://powwowapi.com';
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
