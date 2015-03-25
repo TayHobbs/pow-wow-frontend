@@ -1,0 +1,15 @@
+<h1>Signup Now</h1>
+
+<form {{action "signUp" on="submit"}}>
+    <label>Username</label>
+    {{input type="text" id="username" value=username placeholder="Username"}}
+
+    <label>Email</label>
+    {{input type="text" id="email" value=email placeholder="Email Address"}}
+
+    <label>Password</label>
+    {{input type="password" id="password" value=password placeholder="Password"}}
+
+  <br>
+  <button type="submit">Submit</button>
+</form>
