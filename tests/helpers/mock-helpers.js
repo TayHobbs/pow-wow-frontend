@@ -4,7 +4,7 @@ var loginEndpoint = function() {
   $.fauxjax.new({
     request: {
       method: 'POST',
-      url: ENV.apiDomain.concat('session'),
+      url: ENV.apiDomain.concat('/session'),
       data: {login: 'test@test.com', password: 'testing1'}
     },
     response: {

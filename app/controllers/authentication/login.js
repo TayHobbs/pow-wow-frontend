@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
 
       Ember.$.ajax({
         method: "POST",
-        url: ENV.apiDomain.concat('session'),
+        url: ENV.apiDomain.concat('/session'),
         data: {login: this.get('login'), password: this.get('password')},
         success: function(results) {
           var apiKey;
