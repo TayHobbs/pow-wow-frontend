@@ -26,6 +26,14 @@ test('visiting /signup', function(assert) {
   });
 });
 
+test('clicking register link takes you to signup route', function(assert) {
+  visit('/');
+  click('#register');
+  andThen(function() {
+    assert.equal(currentPath(), 'signup');
+  });
+});
+
 test('can create new user and store token in local storage automatically', function(assert) {
   loginEndpoint()
   $.fauxjax.new({
