@@ -15,14 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-        {{#if isAuthenticated}}
-        <li>{{#link-to 'users.show' currentUser}}{{currentUser.username}}{{/link-to}}</li>
-          <li><a href="#" {{action 'logout'}}>Logout</a></li>
-        {{else}}
-          <li>{{link-to 'Register' 'users'}}</li>
+          <li>{{link-to 'Register' 'signup'}}</li>
           <li>{{link-to 'Login' 'authentication.login'}}</li>
           <li id="logout"{{action "logout"}}><a href="#">Logout</a></li>
-        {{/if}}
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
