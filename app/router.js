@@ -10,7 +10,6 @@ Router.map(function() {
   this.route('authentication', {path: '/'}, function() {
     this.route('login', {path: '/login'});
   });
-  this.route('users');
   this.route('signup');
 });
 
