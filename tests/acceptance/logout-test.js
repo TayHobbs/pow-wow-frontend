@@ -30,6 +30,7 @@ test('logout action clears local storage', function(assert) {
     andThen(function() {
       assert.equal(localStorage.accessToken, null);
       assert.equal(localStorage.userId, null);
+      assert.equal(localStorage.username, null);
       assert.equal(currentPath(), 'index');
     });
   });

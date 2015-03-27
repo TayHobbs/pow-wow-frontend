@@ -30,6 +30,7 @@ export default Ember.Controller.extend({
           ENV.APP.authToken = apiKey;
           controller.set('localStorageProxy.accessToken', apiKey.access_token);
           controller.set('localStorageProxy.userId', apiKey.user_id);
+          controller.set('localStorageProxy.username', results.username);
 
           if (attemptedTransition) {
             attemptedTransition.retry();

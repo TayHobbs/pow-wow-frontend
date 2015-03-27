@@ -33,6 +33,19 @@ test('login', function(assert) {
   andThen(function() {
     assert.equal(localStorage.accessToken, 'abc123');
     assert.equal(localStorage.userId, 1);
+    assert.equal(localStorage.username, 'testUser');
     assert.equal(currentPath(), 'index');
+  });
+});
+
+test('shows username in navbar after login', function(assert) {
+  loginEndpoint()
+  visit('/login');
+
+  fillIn('#login', 'test@test.com');
+  fillIn('#password', 'testing1');
+  click('button[type=submit]')
+  andThen(function() {
+    assert.equal(find('#current-user').text().trim(), 'testUser');
   });
 });
