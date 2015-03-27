@@ -1,9 +1,8 @@
 import Ember from 'ember';
-import {
-  module,
-  test
-} from 'qunit';
-import startApp from 'pow-wow-frontend/tests/helpers/start-app';
+import { module, test } from 'qunit';
+import startApp from '../helpers/start-app';
+
+import { loginEndpoint } from '../helpers/mock-helpers';
 
 var application;
 
@@ -12,10 +11,12 @@ module('Acceptance: Logout', {
     application = startApp();
     localStorage.accessToken = 'abc123';
     localStorage.userId = 1;
+    localStorage.username = 'testUser';
   },
 
   afterEach: function() {
     Ember.run(application, 'destroy');
+    $.fauxjax.clear()
   }
 });
 
@@ -25,6 +26,7 @@ test('logout action clears local storage', function(assert) {
   andThen(function() {
     assert.equal(localStorage.accessToken, 'abc123');
     assert.equal(localStorage.userId, 1);
+    assert.equal(localStorage.username, 'testUser');
 
     click('#logout');
     andThen(function() {

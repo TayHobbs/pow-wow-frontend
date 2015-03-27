@@ -10,6 +10,7 @@ var application;
 module('Acceptance: Signup', {
   beforeEach: function() {
     application = startApp();
+    localStorage.clear();
   },
 
   afterEach: function(assert) {
@@ -40,7 +41,8 @@ test('can create new user and store token in local storage automatically', funct
     request: {
       type: 'POST',
       url: ENV.apiDomain.concat('/users'),
-      data: JSON.stringify({user: {username: 'testUser', email: 'test@test.com', password: 'testing1', admin:false}})
+      data: JSON.stringify({user: {username: 'testUser', email: 'test@test.com', password: 'testing1', admin:false}}),
+      dataType: 'json'
     },
     response: {
       content: {user:{id: 1, username: 'testUser', email: 'test@test.com', password: 'testing1', admin:false, access_token: 'abc123'}}

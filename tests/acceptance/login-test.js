@@ -8,10 +8,15 @@ var application;
 module('Acceptance: Login', {
   beforeEach: function() {
     application = startApp();
+    localStorage.clear();
+    $.fauxjax.settings.strictMatching = false;
   },
 
   afterEach: function() {
     Ember.run(application, 'destroy');
+    $.fauxjax.unfired();
+    $.fauxjax.unhandled();
+    $.fauxjax.clear();
   }
 });
 
@@ -24,6 +29,7 @@ test('visiting /login', function(assert) {
 });
 
 test('login', function(assert) {
+  assert.equal(localStorage.accessToken, null);
   loginEndpoint()
   visit('/login');
 
@@ -35,17 +41,6 @@ test('login', function(assert) {
     assert.equal(localStorage.userId, 1);
     assert.equal(localStorage.username, 'testUser');
     assert.equal(currentPath(), 'index');
-  });
-});
-
-test('shows username in navbar after login', function(assert) {
-  loginEndpoint()
-  visit('/login');
-
-  fillIn('#login', 'test@test.com');
-  fillIn('#password', 'testing1');
-  click('button[type=submit]')
-  andThen(function() {
-    assert.equal(find('#current-user').text().trim(), 'testUser');
+    assert.equal(find('#current-user').text().trim(), 'testUser', 'Username not shown in navbar');
   });
 });
