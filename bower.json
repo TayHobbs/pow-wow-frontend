@@ -13,6 +13,6 @@
     "ember-qunit-notifications": "0.0.7",
     "qunit": "~1.17.1",
     "lodash": "~3.5.0",
-    "fauxjax": "~1.0.0"
+    "fauxjax": "~1.0.2"
   }
 }
