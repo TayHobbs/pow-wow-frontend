@@ -60,6 +60,18 @@ test('display error messages when there is an error creating a user', function(a
   });
 });
 
+test('display error messages when there is an error creating a user', function(assert) {
+  visit('/signup');
+
+  fillIn('#username', 'testUser');
+  fillIn('#email',    'test.com');
+  fillIn('#password', 'testing1');
+  click('button[type=submit]');
+  andThen(function() {
+    assert.equal(find('.error').text().trim(), 'Email is invalid, please enter another.')
+  });
+});
+
 test('can create new user and store token in local storage automatically', function(assert) {
   loginEndpoint()
   $.fauxjax.new({
@@ -85,5 +97,3 @@ test('can create new user and store token in local storage automatically', funct
     assert.equal(localStorage.userId, 1);
   });
 });
-
-

@@ -4,5 +4,7 @@ export default DS.Model.extend({
   username: DS.attr('string'),
   email: DS.attr('string'),
   password: DS.attr('string'),
-  admin: DS.attr('boolean', {defaultValue: false})
+  admin: DS.attr('boolean', {defaultValue: false}),
+
+  validEmail: Ember.computed.match('email', /.+@.+\..+/)
 });

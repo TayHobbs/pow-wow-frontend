@@ -9,9 +9,9 @@ export default Ember.Controller.extend({
       var controller = this;
       this.set('errors', []);
 
-      this.store.createRecord(
-        'user', this.getProperties('username', 'email', 'password')
-        ).save().then(function(user){
+      var user = this.store.createRecord( 'user', this.getProperties('username', 'email', 'password'))
+      if (user.get('validEmail')) {
+        user.save().then(function(user){
 
         Ember.$.ajax({
           method: "POST",
@@ -41,6 +41,9 @@ export default Ember.Controller.extend({
           }
         }
       });
+      } else {
+        this.errors.pushObject('Email is invalid, please enter another.')
+      }
     }
   }
 });
