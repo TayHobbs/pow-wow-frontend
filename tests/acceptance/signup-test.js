@@ -11,6 +11,7 @@ module('Acceptance: Signup', {
   beforeEach: function() {
     application = startApp();
     localStorage.clear();
+    $.fauxjax.settings.strictMatching = false;
   },
 
   afterEach: function(assert) {
@@ -32,6 +33,30 @@ test('clicking register link takes you to signup route', function(assert) {
   click('#register');
   andThen(function() {
     assert.equal(currentPath(), 'signup');
+  });
+});
+
+test('display error messages when there is an error creating a user', function(assert) {
+  $.fauxjax.new({
+    request: {
+      type: 'POST',
+      url: ENV.apiDomain.concat('/users'),
+      data: JSON.stringify({user: {username: 'testUser', email: 'test@test.com', password: 'testing1', admin:false}}),
+      dataType: 'json'
+    },
+    response: {
+      status: 422,
+      content: {errors: {username: ['has already been taken']}}
+    }
+  });
+  visit('/signup');
+
+  fillIn('#username', 'testUser');
+  fillIn('#email',    'test@test.com');
+  fillIn('#password', 'testing1');
+  click('button[type=submit]');
+  andThen(function() {
+    assert.equal(find('.error').text().trim(), 'username has already been taken.')
   });
 });
 
@@ -60,3 +85,5 @@ test('can create new user and store token in local storage automatically', funct
     assert.equal(localStorage.userId, 1);
   });
 });
+
+

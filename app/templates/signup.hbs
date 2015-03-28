@@ -1,5 +1,9 @@
 <h1>Signup Now</h1>
 
+{{#each errors as |error|}}
+<div class="error">{{error}}</div>
+{{/each}}
+
 <form {{action "signUp" on="submit"}}>
     <label>Username</label>
     {{input type="text" id="username" value=username placeholder="Username"}}
