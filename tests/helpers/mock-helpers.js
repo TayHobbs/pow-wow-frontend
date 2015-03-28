@@ -13,6 +13,11 @@ var loginEndpoint = function() {
   });
 };
 
+var loginUser = function() {
+  localStorage.accessToken = 'abc123';
+  localStorage.userId = 1;
+  localStorage.username = 'testUser';
+};
 
 
-export { loginEndpoint };
+export { loginEndpoint, loginUser };
