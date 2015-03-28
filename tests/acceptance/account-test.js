@@ -38,8 +38,8 @@ test('logged in user can visit account route', function(assert) {
   assert.equal(localStorage.accessToken, null);
   loginUser();
 
-  visit('/account');
-
+  visit('/index');
+  click('#account');
   andThen(function() {
     assert.equal(currentPath(), 'account.index');
     visit('/account/delete');

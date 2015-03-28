@@ -18,6 +18,7 @@
           {{#unless currentUser}}
             <li>{{link-to 'Login' 'authentication.login'}}</li>
           {{else}}
+            <li>{{link-to 'Account' 'account' id="account"}}</li>
             <li id="logout"{{action "logout"}}><a href="#">Logout</a></li>
           {{/unless}}
       </ul>
