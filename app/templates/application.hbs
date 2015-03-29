@@ -4,8 +4,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li>{{link-to 'Register' 'signup' id="register"}}</li>
           {{#unless currentUser}}
+            <li>{{link-to 'Register' 'signup' id="register"}}</li>
             <li>{{link-to 'Login' 'authentication.login'}}</li>
           {{else}}
             <li>{{link-to 'Account' 'account' id="account"}}</li>
