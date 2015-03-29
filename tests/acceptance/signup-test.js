@@ -60,7 +60,7 @@ test('display error messages when there is an error creating a user', function(a
   });
 });
 
-test('display error messages when there is an error creating a user', function(assert) {
+test('display email is invalid message when the entered email is invalid', function(assert) {
   visit('/signup');
 
   fillIn('#username', 'testUser');
