@@ -66,13 +66,12 @@ test('delete user account', function(assert) {
   loginUser();
   $.fauxjax.new({
     request: {
-      type: 'GET',
+      type: 'DELETE',
       url: ENV.apiDomain.concat('/users/1'),
-      dataType: 'json',
       headers: {Authorization: 'abc123'}
     },
     response: {
-      content: {}
+      content: {user:{id:1}}
     }
   });
 
