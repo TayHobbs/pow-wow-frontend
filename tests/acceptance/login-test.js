@@ -14,8 +14,6 @@ module('Acceptance: Login', {
 
   afterEach: function() {
     Ember.run(application, 'destroy');
-    $.fauxjax.unfired();
-    $.fauxjax.unhandled();
     $.fauxjax.clear();
   }
 });

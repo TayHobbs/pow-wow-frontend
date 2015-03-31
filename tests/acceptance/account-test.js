@@ -62,6 +62,16 @@ test('clicking Delete Account shows confirmation text', function(assert) {
   });
 });
 
+test('clicking no button takes you back to account.index', function(assert) {
+  loginUser();
+  visit('/account/delete');
+
+  click('#no');
+  andThen(function() {
+    assert.equal(currentPath(), 'account.index');
+  });
+});
+
 test('delete user account', function(assert) {
   assert.equal(localStorage.accessToken, null);
   loginUser();
@@ -72,6 +82,7 @@ test('delete user account', function(assert) {
       headers: {Authorization: 'abc123'}
     },
     response: {
+      // This is required for some reason, even though the real response is {}
       content: {user:{id:1}}
     }
   });
@@ -80,6 +91,9 @@ test('delete user account', function(assert) {
 
   click('#yes');
   andThen(function() {
+    assert.equal(localStorage.accessToken, null);
+    assert.equal(localStorage.userId, null);
+    assert.equal(localStorage.username, null);
     assert.equal(currentPath(), 'index');
   });
 });
