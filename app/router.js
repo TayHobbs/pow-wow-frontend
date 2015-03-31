@@ -12,6 +12,7 @@ Router.map(function() {
   });
   this.route('account', function() {
     this.route('delete');
+    this.route('edit');
   });
   this.route('signup');
 });

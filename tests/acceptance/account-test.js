@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 
-import { loginEndpoint, loginUser } from '../helpers/mock-helpers';
+import { loginEndpoint, loginUser, getUserEndpoint } from '../helpers/mock-helpers';
 import ENV from 'pow-wow-frontend/config/environment';
 
 var application = undefined
@@ -12,6 +12,7 @@ module('Acceptance: Account', {
     application = startApp();
     localStorage.clear();
     $.fauxjax.settings.debug = true
+    $.fauxjax.settings.strictMatching = false
   },
 
   afterEach: function() {
@@ -80,5 +81,43 @@ test('delete user account', function(assert) {
   click('#yes');
   andThen(function() {
     assert.equal(currentPath(), 'index');
+  });
+});
+
+test('link to account.edit', function(assert) {
+  loginUser();
+  visit('/account');
+
+  click('#edit-account');
+  andThen(function() {
+    assert.equal(currentPath(), 'account.edit');
+  });
+});
+
+test('edit user account', function(assert) {
+  loginUser();
+  getUserEndpoint();
+  $.fauxjax.new({
+    request: {
+      type: 'PUT',
+      url: ENV.apiDomain.concat('/users/1'),
+      headers: {Authorization: 'abc123'},
+      data: JSON.stringify({user: {username: "test", email: "testUser@test.com", password: null, admin: false}})
+    },
+    response: {
+      // This is required for some reason, even though the real response is {}
+      content: {user:{id:1}}
+    }
+  });
+
+  visit('/account/edit');
+
+  fillIn('#username', 'test')
+  fillIn('#email', 'testUser@test.com')
+  click('button[type=submit]');
+  andThen(function() {
+    assert.equal(localStorage.username, 'test');
+    assert.equal(find('#current-user').text().trim(), 'test', 'Username not shown in navbar');
+    assert.equal(currentPath(), 'account.index');
   });
 });
