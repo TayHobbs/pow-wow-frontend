@@ -1,5 +1,8 @@
-<h1>Edit User</h1>
+{{#each errors as |error|}}
+  <div class="error">{{error}}</div>
+{{/each}}
 
+<h4>Edit User Info</h4>
 
 <form {{action "updateUser" on="submit"}}>
     <label>New Username</label>
@@ -7,7 +10,17 @@
 
     <label>New Email</label>
     {{input type="text" id="email" value=email placeholder="Email Address"}}
+  <br>
+  <button type="submit">Submit</button>
+</form>
 
+<h4>Change Password</h4>
+<form {{action "updatePassword" on="submit"}}>
+    <label>Enter New Password</label>
+    {{input type="password" id="password" value=password placeholder="Password"}}
+
+    <label>Confirm Password</label>
+    {{input type="password" id="confirm-password" value=confirmPassword placeholder="Confirm Password"}}
   <br>
   <button type="submit">Submit</button>
 </form>

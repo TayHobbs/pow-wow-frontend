@@ -135,3 +135,44 @@ test('edit user account', function(assert) {
     assert.equal(currentPath(), 'account.index');
   });
 });
+
+test('edit user password', function(assert) {
+  loginUser();
+  getUserEndpoint();
+  $.fauxjax.new({
+    request: {
+      type: 'PUT',
+      url: ENV.apiDomain.concat('/users/1'),
+      headers: {Authorization: 'abc123'},
+      data: JSON.stringify({user: {username: 'test', email: 'test@test.com', password: 'test1', admin: false}})
+    },
+    response: {
+      // This is required for some reason, even though the real response is {}
+      content: {user:{id:1}}
+    }
+  });
+
+  visit('/account/edit');
+
+  fillIn('#password', 'test1');
+  fillIn('#confirm-password', 'test1');
+  click('button[type=submit]:eq(1)');
+  andThen(function() {
+    assert.equal(currentPath(), 'account.index');
+  });
+});
+
+test('change user password shows eror when the two do not match ', function(assert) {
+  loginUser();
+  getUserEndpoint();
+
+  visit('/account/edit');
+
+  fillIn('#password', 'test');
+  fillIn('#confirm-password', 'testing');
+  click('button[type=submit]:eq(1)');
+  andThen(function() {
+    assert.equal(find('.error').text().trim(), 'Passwords didn\'t match, please try again.');
+    assert.equal(currentPath(), 'account.edit');
+  });
+});
