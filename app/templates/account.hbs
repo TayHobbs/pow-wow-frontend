@@ -1,3 +1,8 @@
+<div id="{{if flashMessage 'flash' 'no-flash'}}">
+  <div id="message">{{flashMessage}}</div>
+  <span id="dismiss-flash-message" {{action 'dismissFlashMessage'}}>X</span>
+</div>
+
 {{link-to "Delete Account" 'account.delete' id="delete-account"}}
 {{link-to "Edit Account" 'account.edit' id="edit-account"}}
 {{outlet}}

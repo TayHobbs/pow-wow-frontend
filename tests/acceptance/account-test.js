@@ -108,7 +108,7 @@ test('link to account.edit', function(assert) {
   });
 });
 
-test('edit user account', function(assert) {
+test('successfully editing user account displays flash message', function(assert) {
   loginUser();
   getUserEndpoint();
   $.fauxjax.new({
@@ -128,11 +128,40 @@ test('edit user account', function(assert) {
 
   fillIn('#username', 'test')
   fillIn('#email', 'testUser@test.com')
-  click('button[type=submit]');
+  click('button[type=submit]:eq(0)');
   andThen(function() {
     assert.equal(localStorage.username, 'test');
     assert.equal(find('#current-user').text().trim(), 'test', 'Username not shown in navbar');
+    assert.equal(find('#flash #message').text().trim(), 'Account information successfully changed!', 'Flash message not displayed');
     assert.equal(currentPath(), 'account.index');
+  });
+});
+
+
+test('edit user password', function(assert) {
+  loginUser();
+  getUserEndpoint();
+  $.fauxjax.new({
+    request: {
+      type: 'PUT',
+      url: ENV.apiDomain.concat('/users/1'),
+      headers: {Authorization: 'abc123'},
+      data: JSON.stringify({user: {username: 'test', email: 'test@test.com', password: 'test1', admin: false}})
+    },
+    response: {
+      // This is required for some reason, even though the real response is {}
+      content: {user:{id:1}}
+    }
+  });
+
+  visit('/account/edit');
+
+  fillIn('#password', 'test1');
+  fillIn('#confirm-password', 'test1');
+  click('button[type=submit]:eq(1)');
+  andThen(function() {
+    assert.equal(currentPath(), 'account.index');
+    assert.equal(find('#flash #message').text().trim(), 'Password successfully changed!', 'Flash message not displayed');
   });
 });
 
@@ -159,6 +188,7 @@ test('edit user password', function(assert) {
   click('button[type=submit]:eq(1)');
   andThen(function() {
     assert.equal(currentPath(), 'account.index');
+    assert.equal(find('#flash #message').text().trim(), 'Password successfully changed!', 'Flash message not displayed');
   });
 });
 
@@ -174,5 +204,36 @@ test('change user password shows eror when the two do not match ', function(asse
   andThen(function() {
     assert.equal(find('.error').text().trim(), 'Passwords didn\'t match, please try again.');
     assert.equal(currentPath(), 'account.edit');
+  });
+});
+
+test('can clear flash message', function(assert) {
+  loginUser();
+  getUserEndpoint();
+  $.fauxjax.new({
+    request: {
+      type: 'PUT',
+      url: ENV.apiDomain.concat('/users/1'),
+      headers: {Authorization: 'abc123'},
+      data: JSON.stringify({user: {username: "test", email: "testUser@test.com", password: null, admin: false}})
+    },
+    response: {
+      // This is required for some reason, even though the real response is {}
+      content: {user:{id:1}}
+    }
+  });
+
+  visit('/account/edit');
+
+  fillIn('#username', 'test')
+  fillIn('#email', 'testUser@test.com')
+  click('button[type=submit]:eq(0)');
+  andThen(function() {
+    assert.equal(find('#flash #message').text().trim(), 'Account information successfully changed!', 'Flash message not displayed');
+    assert.equal(currentPath(), 'account.index');
+    click('#dismiss-flash-message');
+    andThen(function() {
+      assert.ok(findWithAssert('#no-flash'));
+    });
   });
 });

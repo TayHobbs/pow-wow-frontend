@@ -14,6 +14,7 @@ export default Ember.Controller.extend({
         user.set('email', email);
         user.save();
         controller.set('localStorageProxy.username', user.get('username'));
+        controller.controllerFor('account').set('flashMessage', 'Account information successfully changed!');
         controller.transitionToRoute('account');
       }, function(error) {
         if (error && error.errors) {
@@ -35,6 +36,7 @@ export default Ember.Controller.extend({
         this.store.find('user', this.get('localStorageProxy.userId')).then(function(user) {
           user.set('password', password);
           user.save();
+          controller.controllerFor('account').set('flashMessage', 'Password successfully changed!');
           controller.transitionToRoute('account');
         });
       } else {
