@@ -237,3 +237,33 @@ test('can clear flash message', function(assert) {
     });
   });
 });
+
+test('clears flash message automatically', function(assert) {
+  loginUser();
+  getUserEndpoint();
+  $.fauxjax.new({
+    request: {
+      type: 'PUT',
+      url: ENV.apiDomain.concat('/users/1'),
+      headers: {Authorization: 'abc123'},
+      data: JSON.stringify({user: {username: "test", email: "testUser@test.com", password: null, admin: false}})
+    },
+    response: {
+      // This is required for some reason, even though the real response is {}
+      content: {user:{id:1}}
+    }
+  });
+
+  visit('/account/edit');
+
+  fillIn('#username', 'test')
+  fillIn('#email', 'testUser@test.com')
+  click('button[type=submit]:eq(0)');
+  andThen(function() {
+    assert.equal(find('#flash #message').text().trim(), 'Account information successfully changed!', 'Flash message not displayed');
+    assert.equal(currentPath(), 'account.index');
+    andThen(function() {
+      assert.ok(findWithAssert('#no-flash'));
+    });
+  });
+});
