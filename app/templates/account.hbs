@@ -1,8 +1,17 @@
-<div id="{{if flashMessage 'flash' 'no-flash'}}">
+<div id="{{if flashMessage 'flash' 'no-flash'}}" class="alert-box success">
   <div id="message">{{flashMessage}}</div>
   <span id="dismiss-flash-message" {{action 'dismissFlashMessage'}}>X</span>
 </div>
 
-{{link-to "Delete Account" 'account.delete' id="delete-account"}}
-{{link-to "Edit Account" 'account.edit' id="edit-account"}}
-{{outlet}}
+
+<div class="row left">
+  <div class="medium-3 columns">
+   <ul class="side-nav" role="navigation" title="Link List">
+     <li role="menuitem">{{link-to "Edit Account" 'account.edit' id="edit-account"}}</li>
+     <li role="menuitem">{{link-to "Delete Account" 'account.delete' id="delete-account"}}</li>
+   </ul>
+  </div>
+  <div class="small-9 columns">
+    {{outlet}}
+  </div>
+</div>

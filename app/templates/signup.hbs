@@ -1,19 +1,23 @@
-<h1>Signup Now</h1>
+<div class="row">
+  <div class="small-6 small-offset-3">
+    <h1>Signup Now</h1>
 
-{{#each errors as |error|}}
-<div class="error">{{error}}</div>
-{{/each}}
+    {{#each errors as |error|}}
+      <div class="alert-box alert error">{{error}}</div>
+    {{/each}}
 
-<form {{action "signUp" on="submit"}}>
-    <label>Username</label>
-    {{input type="text" id="username" value=username placeholder="Username"}}
+    <form {{action "signUp" on="submit"}}>
+        <label>Username</label>
+        {{input type="text" id="username" value=username placeholder="Username"}}
 
-    <label>Email</label>
-    {{input type="text" id="email" value=email placeholder="Email Address"}}
+        <label>Email</label>
+        {{input type="text" id="email" value=email placeholder="Email Address"}}
 
-    <label>Password</label>
-    {{input type="password" id="password" value=password placeholder="Password"}}
+        <label>Password</label>
+        {{input type="password" id="password" value=password placeholder="Password"}}
 
-  <br>
-  <button type="submit">Submit</button>
-</form>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
