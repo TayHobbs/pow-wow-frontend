@@ -143,22 +143,6 @@ test('edit user password', function(assert) {
   });
 });
 
-test('edit user password', function(assert) {
-  loginUser();
-  getUserEndpoint();
-  editUserEndpoint();
-
-  visit('/account/edit');
-
-  fillIn('#password', 'test1');
-  fillIn('#confirm-password', 'test1');
-  click('button[type=submit]:eq(1)');
-  andThen(function() {
-    assert.equal(currentPath(), 'account.index');
-    assert.equal(find('#flash #message').text().trim(), 'Password successfully changed!', 'Flash message not displayed');
-  });
-});
-
 test('change user password shows eror when the two do not match ', function(assert) {
   loginUser();
   getUserEndpoint();
