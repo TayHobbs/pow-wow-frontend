@@ -26,6 +26,21 @@ var getUserEndpoint = function() {
   });
 };
 
+var editUserEndpoint = function() {
+  $.fauxjax.new({
+    request: {
+      type: 'PUT',
+      url: ENV.apiDomain.concat('/users/1'),
+      headers: {Authorization: 'abc123'},
+      data: JSON.stringify({user: {username: "test", email: "testUser@test.com", password: null, admin: false}})
+    },
+    response: {
+      // This is required for some reason, even though the real response is {}
+      content: {user:{id:1}}
+    }
+  });
+};
+
 var loginUser = function() {
   localStorage.accessToken = 'abc123';
   localStorage.userId = 1;
@@ -33,4 +48,4 @@ var loginUser = function() {
 };
 
 
-export { loginEndpoint, loginUser, getUserEndpoint };
+export { loginEndpoint, loginUser, getUserEndpoint, editUserEndpoint };
