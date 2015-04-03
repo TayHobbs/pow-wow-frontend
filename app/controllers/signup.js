@@ -1,6 +1,5 @@
 import Ember from 'ember';
 
-import ENV from 'pow-wow-frontend/config/environment';
 import Login from 'pow-wow-frontend/mixins/login';
 
 export default Ember.Controller.extend(Login, {
@@ -11,7 +10,7 @@ export default Ember.Controller.extend(Login, {
       var controller = this;
       this.set('errors', []);
 
-      var user = this.store.createRecord( 'user', this.getProperties('username', 'email', 'password'))
+      var user = this.store.createRecord( 'user', this.getProperties('username', 'email', 'password'));
       if (user.get('validEmail')) {
         user.save().then(function(user) {
           controller.loginUser(user.get('email'), user.get('password'));
@@ -26,7 +25,7 @@ export default Ember.Controller.extend(Login, {
           }
         });
       } else {
-        this.errors.pushObject('Email is invalid, please enter another.')
+        this.errors.pushObject('Email is invalid, please enter another.');
       }
     }
   }

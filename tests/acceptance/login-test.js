@@ -28,7 +28,7 @@ test('visiting /login', function(assert) {
 
 test('login', function(assert) {
   assert.equal(localStorage.accessToken, null);
-  loginEndpoint()
+  loginEndpoint();
   visit('/login');
 
   fillIn('#login', 'test@test.com');

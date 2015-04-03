@@ -16,7 +16,7 @@ module('Acceptance: Logout', {
 
   afterEach: function() {
     Ember.run(application, 'destroy');
-    $.fauxjax.clear()
+    $.fauxjax.clear();
   }
 });
 

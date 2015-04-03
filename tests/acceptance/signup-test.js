@@ -56,7 +56,7 @@ test('display error messages when there is an error creating a user', function(a
   fillIn('#password', 'testing1');
   click('button[type=submit]');
   andThen(function() {
-    assert.equal(find('.error').text().trim(), 'username has already been taken.')
+    assert.equal(find('.error').text().trim(), 'username has already been taken.');
   });
 });
 
@@ -68,7 +68,7 @@ test('display email is invalid message when the entered email is invalid', funct
   fillIn('#password', 'testing1');
   click('button[type=submit]');
   andThen(function() {
-    assert.equal(find('.error').text().trim(), 'Email is invalid, please enter another.')
+    assert.equal(find('.error').text().trim(), 'Email is invalid, please enter another.');
   });
 });
 

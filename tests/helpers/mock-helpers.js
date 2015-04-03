@@ -24,7 +24,7 @@ var getUserEndpoint = function() {
       content: {user:{id: 1, username: 'testUser', email: 'test@test.com', password: 'testing1', admin:false, access_token: 'abc123'}}
     }
   });
-}
+};
 
 var loginUser = function() {
   localStorage.accessToken = 'abc123';

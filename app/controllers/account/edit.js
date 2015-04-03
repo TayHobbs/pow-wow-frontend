@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
           controller.transitionToRoute('account');
         });
       } else {
-        this.errors.pushObject('Passwords didn\'t match, please try again.')
+        this.errors.pushObject('Passwords didn\'t match, please try again.');
       }
     }
   }
