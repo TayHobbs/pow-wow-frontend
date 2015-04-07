@@ -192,7 +192,7 @@ test('edit user password', function(assert) {
   });
 });
 
-test('change user password shows eror when the two do not match ', function(assert) {
+test('change user password shows error when the two do not match ', function(assert) {
   loginUser();
   getUserEndpoint();
 
