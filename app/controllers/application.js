@@ -9,9 +9,8 @@ export default Ember.Controller.extend({
   }.observes("localStorageProxy.accessToken").on("init"),
 
   updateCurrentUser: function() {
-    var controller = this;
-    return Ember.run(function() {
-      controller.set('currentUser', controller.get('localStorageProxy.username'));
+    return Ember.run(() => {
+      this.set('currentUser', this.get('localStorageProxy.username'));
     });
   }.observes('localStorageProxy.username').on('init')
 

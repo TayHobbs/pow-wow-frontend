@@ -6,47 +6,46 @@ export default Ember.Controller.extend({
 
   actions: {
     updateUser: function() {
-      var controller = this;
       var email = this.get('email');
       var username = this.get('username');
 
-      this.store.find('user', this.get('localStorageProxy.userId')).then(function(user) {
+      this.store.find('user', this.get('localStorageProxy.userId')).then((user) => {
         user.set('username', username);
         user.set('email', email);
         user.save();
-        controller.set('localStorageProxy.username', user.get('username'));
-        Ember.get(controller, 'flashMessages').add({
+        this.set('localStorageProxy.username', user.get('username'));
+        Ember.get(this, 'flashMessages').add({
           message: 'Account information successfully changed!', sticky: ENV.stickyFlash
         });
-        controller.transitionToRoute('account');
-      }, function(error) {
+        this.transitionToRoute('account');
+      }, (error) => {
         if (error && error.errors) {
           for(var key in error.errors){
             // check also if property is not inherited from prototype
             if (error.errors.hasOwnProperty(key)) {
-              controller.errors.pushObject(key.concat(' ', error.errors[key], '.'));
+              this.errors.pushObject(key.concat(' ', error.errors[key], '.'));
             }
           }
         }
       });
     },
     updatePassword: function() {
-      var controller = this;
       var password = this.get('password');
       var confirmPassword = this.get('confirmPassword');
 
-      if (password == confirmPassword) {
-        this.store.find('user', this.get('localStorageProxy.userId')).then(function(user) {
-          user.set('password', password);
-          user.save();
-          Ember.get(controller, 'flashMessages').add({
-            message: 'Password successfully changed!', sticky: ENV.stickyFlash
-          });
-          controller.transitionToRoute('account');
-        });
-      } else {
+      if (password !== confirmPassword) {
         this.errors.pushObject('Passwords didn\'t match, please try again.');
+        return;
       }
+
+      this.store.find('user', this.get('localStorageProxy.userId')).then((user) => {
+        user.set('password', password);
+        user.save();
+        Ember.get(this, 'flashMessages').add({
+          message: 'Password successfully changed!', sticky: ENV.stickyFlash
+        });
+        this.transitionToRoute('account');
+      });
     }
   }
 });

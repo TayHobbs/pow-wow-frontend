@@ -3,10 +3,9 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   actions: {
     confirmDelete: function() {
-      var controller = this;
-      this.store.find('user', localStorage.userId).then(function(user){
+      this.store.find('user', localStorage.userId).then((user) => {
         user.destroyRecord();
-        controller.send('logout');
+        this.send('logout');
       });
     },
     cancelDelete: function() {
