@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'pow-wow-frontend/config/environment';
 
 export default Ember.Controller.extend({
   errors: [],
@@ -14,7 +15,9 @@ export default Ember.Controller.extend({
         user.set('email', email);
         user.save();
         controller.set('localStorageProxy.username', user.get('username'));
-        controller.controllerFor('account').set('flashMessage', 'Account information successfully changed!');
+        Ember.get(controller, 'flashMessages').add({
+          message: 'Account information successfully changed!', sticky: ENV.stickyFlash
+        });
         controller.transitionToRoute('account');
       }, function(error) {
         if (error && error.errors) {
@@ -36,7 +39,9 @@ export default Ember.Controller.extend({
         this.store.find('user', this.get('localStorageProxy.userId')).then(function(user) {
           user.set('password', password);
           user.save();
-          controller.controllerFor('account').set('flashMessage', 'Password successfully changed!');
+          Ember.get(controller, 'flashMessages').add({
+            message: 'Password successfully changed!', sticky: ENV.stickyFlash
+          });
           controller.transitionToRoute('account');
         });
       } else {
