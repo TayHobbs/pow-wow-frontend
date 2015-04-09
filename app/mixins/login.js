@@ -15,31 +15,32 @@ export default Ember.Mixin.create({
   },
 
   loginUser: function(login, password) {
-    var mixin = this;
     var attemptedTransition = this.get('attemptedTransition');
     var router = this.get('target');
     Ember.$.ajax({
       method: 'POST',
       url: ENV.apiDomain.concat('/session'),
       data: {login: login, password: password},
-      success: function(results) {
-        var apiKey;
-        apiKey = results.api_key;
+      success: (results) => {
+        var apiKey = results.api_key;
         ENV.APP.authToken = apiKey;
-        mixin.set('localStorageProxy.accessToken', apiKey.access_token);
-        mixin.set('localStorageProxy.userId', apiKey.user_id);
-        mixin.set('localStorageProxy.username', results.username);
+        this.set('localStorageProxy.accessToken', apiKey.access_token);
+        this.set('localStorageProxy.userId', apiKey.user_id);
+        this.set('localStorageProxy.username', results.username);
 
         if (attemptedTransition) {
           attemptedTransition.retry();
-          mixin.set('attemptedTransition', null);
+          this.set('attemptedTransition', null);
         } else {
           router.transitionTo('index');
         }
       },
-      fail: function(jqXHR, status, error) {
-        console.log(error);
-        console.log(status);
+      error: (jqXHR, status, error) => {
+        Ember.run.later(() => {
+          Ember.get(this, 'flashMessages').add({
+            message: 'Incorrect username or password, please try again', sticky: ENV.stickyFlash
+          });
+        });
         return jqXHR;
       }
     });

@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
+
 import { loginEndpoint } from '../helpers/mock-helpers';
+import ENV from 'pow-wow-frontend/config/environment';
 
 var application;
 
@@ -40,5 +42,28 @@ test('login', function(assert) {
     assert.equal(localStorage.username, 'testUser');
     assert.equal(currentPath(), 'index');
     assert.equal(find('#current-user').text().trim(), 'testUser', 'Username not shown in navbar');
+  });
+});
+
+test('failed login', function(assert) {
+  $.fauxjax.new({
+    request: {
+      method: 'POST',
+      url: ENV.apiDomain.concat('/session'),
+      data: {login: 'test@test.com', password: 'testing1'}
+    },
+    response: {
+      status: 401
+    }
+  });
+
+  visit('/login');
+
+  fillIn('#login', 'test@test.com');
+  fillIn('#password', 'testing1');
+  click('button[type=submit]')
+  andThen(function() {
+    assert.equal(currentPath(), 'authentication.login');
+    assert.equal(find('.flash-message').text().trim(), 'Incorrect username or password, please try again', 'Error message not displayed');
   });
 });
