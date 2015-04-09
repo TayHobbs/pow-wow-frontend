@@ -22,4 +22,8 @@
   </section>
 </nav>
 
+{{#each flashMessages.queue as |flash|}}
+  {{flash-message flash=flash class='flash-message'}}
+{{/each}}
+
 {{outlet}}
