@@ -116,7 +116,7 @@ test('successfully editing user account displays flash message', function(assert
       type: 'PUT',
       url: ENV.apiDomain.concat('/users/1'),
       headers: {Authorization: 'abc123'},
-      data: JSON.stringify({user: {username: "test", email: "testUser@test.com", password: null, admin: false}})
+      data: JSON.stringify({user: {username: 'test', email: 'testUser@test.com', password: null, admin: false}})
     },
     response: {
       // This is required for some reason, even though the real response is {}
