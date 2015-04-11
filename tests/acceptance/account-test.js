@@ -5,19 +5,19 @@ import startApp from '../helpers/start-app';
 import { loginEndpoint, loginUser, getUserEndpoint } from '../helpers/mock-helpers';
 import ENV from 'pow-wow-frontend/config/environment';
 
-let application = undefined
+let application;
 
 module('Acceptance: Account', {
   beforeEach: function() {
     application = startApp();
     localStorage.clear();
-    $.fauxjax.settings.debug = true
-    $.fauxjax.settings.strictMatching = false
+    $.fauxjax.settings.debug = true;
+    $.fauxjax.settings.strictMatching = false;
   },
 
   afterEach: function() {
     Ember.run(application, 'destroy');
-    $.fauxjax.clear()
+    $.fauxjax.clear();
   }
 });
 
@@ -55,7 +55,7 @@ test('clicking Delete Account shows confirmation text', function(assert) {
 
   visit('/account');
 
-  click('#delete-account')
+  click('#delete-account');
   andThen(function() {
     assert.equal(currentPath(), 'account.delete');
     assert.equal(find('#delete-confirmation').text().trim(), 'Are you sure you want to delete your account?');
@@ -126,8 +126,8 @@ test('successfully editing user account displays flash message', function(assert
 
   visit('/account/edit');
 
-  fillIn('#username', 'test')
-  fillIn('#email', 'testUser@test.com')
+  fillIn('#username', 'test');
+  fillIn('#email', 'testUser@test.com');
   click('button[type=submit]:eq(0)');
   andThen(function() {
     assert.equal(localStorage.username, 'test');

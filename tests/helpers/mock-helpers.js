@@ -1,6 +1,6 @@
 import ENV from 'pow-wow-frontend/config/environment';
 
-let loginEndpoint = function() {
+var loginEndpoint = function() {
   $.fauxjax.new({
     request: {
       method: 'POST',
@@ -13,7 +13,7 @@ let loginEndpoint = function() {
   });
 };
 
-let getUserEndpoint = function() {
+var getUserEndpoint = function() {
   $.fauxjax.new({
     request: {
       type: 'GET',
@@ -26,7 +26,7 @@ let getUserEndpoint = function() {
   });
 };
 
-let editUserEndpoint = function() {
+var editUserEndpoint = function() {
   $.fauxjax.new({
     request: {
       type: 'PUT',

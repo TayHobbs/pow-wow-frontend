@@ -35,7 +35,7 @@ test('login', function(assert) {
 
   fillIn('#login', 'test@test.com');
   fillIn('#password', 'testing1');
-  click('button[type=submit]')
+  click('button[type=submit]');
   andThen(function() {
     assert.equal(localStorage.accessToken, 'abc123');
     assert.equal(localStorage.userId, 1);
@@ -61,7 +61,7 @@ test('failed login', function(assert) {
 
   fillIn('#login', 'test@test.com');
   fillIn('#password', 'testing1');
-  click('button[type=submit]')
+  click('button[type=submit]');
   andThen(function() {
     assert.equal(currentPath(), 'authentication.login');
     assert.equal(find('.flash-message').text().trim(), 'Incorrect username or password, please try again', 'Error message not displayed');

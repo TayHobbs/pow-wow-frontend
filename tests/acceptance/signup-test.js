@@ -73,7 +73,7 @@ test('display email is invalid message when the entered email is invalid', funct
 });
 
 test('can create new user and store token in local storage automatically', function(assert) {
-  loginEndpoint()
+  loginEndpoint();
   $.fauxjax.new({
     request: {
       type: 'POST',
