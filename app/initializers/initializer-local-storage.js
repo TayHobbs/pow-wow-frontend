@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var LocalStorageProxy = Ember.Object.extend({
+let LocalStorageProxy = Ember.Object.extend({
   setUpEventListener: (function() {
     return window.addEventListener('localStorageProxy', ((function(_this) {
       return function(localStorageEvent) {
@@ -25,7 +25,7 @@ var LocalStorageProxy = Ember.Object.extend({
 
   clear: function(keyName) {
     this.beginPropertyChanges();
-    for (var keyPos = 0; keyPos < localStorage.length; keyPos++) {
+    for (const keyPos = 0; keyPos < localStorage.length; keyPos++) {
       if (localStorage.key(keyPos) === keyName) {
         this.set(localStorage.key(keyPos), null);
       }

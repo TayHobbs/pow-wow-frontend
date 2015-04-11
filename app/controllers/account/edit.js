@@ -6,8 +6,8 @@ export default Ember.Controller.extend({
 
   actions: {
     updateUser: function() {
-      var email = this.get('email');
-      var username = this.get('username');
+      let email = this.get('email');
+      let username = this.get('username');
 
       this.store.find('user', this.get('localStorageProxy.userId')).then((user) => {
         user.set('username', username);
@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
         this.transitionToRoute('account');
       }, (error) => {
         if (error && error.errors) {
-          for(var key in error.errors){
+          for(const key in error.errors){
             // check also if property is not inherited from prototype
             if (error.errors.hasOwnProperty(key)) {
               this.errors.pushObject(key.concat(' ', error.errors[key], '.'));
@@ -30,10 +30,9 @@ export default Ember.Controller.extend({
       });
     },
     updatePassword: function() {
-      var password = this.get('password');
-      var confirmPassword = this.get('confirmPassword');
+      let password = this.get('password');
 
-      if (password !== confirmPassword) {
+      if (password !== this.get('confirmPassword')) {
         this.errors.pushObject('Passwords didn\'t match, please try again.');
         return;
       }

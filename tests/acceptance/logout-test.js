@@ -4,7 +4,7 @@ import startApp from '../helpers/start-app';
 
 import { loginEndpoint } from '../helpers/mock-helpers';
 
-var application;
+let application;
 
 module('Acceptance: Logout', {
   beforeEach: function() {

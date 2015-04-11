@@ -5,7 +5,7 @@ export default Ember.Mixin.create({
   attemptedTransition: null,
 
   preformTransition: function() {
-    var attemptedTransition = this.get('attemptedTransition');
+    let attemptedTransition = this.get('attemptedTransition');
     if (attemptedTransition) {
       attemptedTransition.retry();
       this.setProperties('attemptedTransition', null);
@@ -15,14 +15,14 @@ export default Ember.Mixin.create({
   },
 
   loginUser: function(login, password) {
-    var attemptedTransition = this.get('attemptedTransition');
-    var router = this.get('target');
+    let attemptedTransition = this.get('attemptedTransition');
+    let router = this.get('target');
     Ember.$.ajax({
       method: 'POST',
       url: ENV.apiDomain.concat('/session'),
       data: {login: login, password: password},
       success: (results) => {
-        var apiKey = results.api_key;
+        let apiKey = results.api_key;
         ENV.APP.authToken = apiKey;
         this.set('localStorageProxy.accessToken', apiKey.access_token);
         this.set('localStorageProxy.userId', apiKey.user_id);

@@ -5,7 +5,7 @@ import startApp from '../helpers/start-app';
 import { loginEndpoint } from '../helpers/mock-helpers';
 import ENV from 'pow-wow-frontend/config/environment';
 
-var application;
+let application;
 
 module('Acceptance: Login', {
   beforeEach: function() {
