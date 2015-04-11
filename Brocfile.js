@@ -12,6 +12,8 @@ if (app.env === 'test' || app.env === 'development') {
 }
 
 app.import('bower_components/lodash/lodash.min.js');
+app.import('bower_components/foundation/css/foundation.css');
+app.import('bower_components/foundation/css/normalize.css');
 app.import('bower_components/foundation/js/foundation.min.js');
 app.import('bower_components/foundation/js/foundation/foundation.topbar.js');
 
