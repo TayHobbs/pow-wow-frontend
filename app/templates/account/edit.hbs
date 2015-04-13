@@ -6,10 +6,10 @@
 
 <form {{action "updateUser" on="submit"}}>
     <label>New Username</label>
-    {{input type="text" id="username" value=username placeholder="Username"}}
+    {{input type="text" id="username" value=model.username placeholder="Username"}}
 
     <label>New Email</label>
-    {{input type="text" id="email" value=email placeholder="Email Address"}}
+    {{input type="text" id="email" value=model.email placeholder="Email Address"}}
   <br>
   <button type="submit">Submit</button>
 </form>

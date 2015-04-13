@@ -6,13 +6,8 @@ export default Ember.Controller.extend({
 
   actions: {
     updateUser: function() {
-      let email = this.get('email');
-      let username = this.get('username');
-
-      this.store.find('user', this.get('localStorageProxy.userId')).then((user) => {
-        user.set('username', username);
-        user.set('email', email);
-        user.save();
+      this.model.password = ''; // Currently necessary so that Rails won't try to set the password to nil
+      this.model.save().then((user) => {
         this.set('localStorageProxy.username', user.get('username'));
         Ember.get(this, 'flashMessages').add({
           message: 'Account information successfully changed!', sticky: ENV.stickyFlash

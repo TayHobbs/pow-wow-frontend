@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 
-import { loginEndpoint, loginUser, getUserEndpoint } from '../helpers/mock-helpers';
+import { loginEndpoint, loginUser, getUserEndpoint, editUserEndpoint } from '../helpers/mock-helpers';
 import ENV from 'pow-wow-frontend/config/environment';
 
 let application;
@@ -100,6 +100,7 @@ test('delete user account', function(assert) {
 
 test('link to account.edit', function(assert) {
   loginUser();
+  getUserEndpoint();
   visit('/account');
 
   click('#edit-account');
@@ -111,18 +112,7 @@ test('link to account.edit', function(assert) {
 test('successfully editing user account displays flash message', function(assert) {
   loginUser();
   getUserEndpoint();
-  $.fauxjax.new({
-    request: {
-      type: 'PUT',
-      url: ENV.apiDomain.concat('/users/1'),
-      headers: {Authorization: 'abc123'},
-      data: JSON.stringify({user: {username: 'test', email: 'testUser@test.com', password: null, admin: false}})
-    },
-    response: {
-      // This is required for some reason, even though the real response is {}
-      content: {user:{id:1}}
-    }
-  });
+  editUserEndpoint();
 
   visit('/account/edit');
 
