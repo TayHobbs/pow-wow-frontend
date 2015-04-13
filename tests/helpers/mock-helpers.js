@@ -26,6 +26,23 @@ var getUserEndpoint = function() {
   });
 };
 
+var getUsersEndpoint = function() {
+  $.fauxjax.new({
+    request: {
+      type: 'GET',
+      url: ENV.apiDomain.concat('/users'),
+      headers: {Authorization: 'abc123'}
+    },
+    response: {
+      content: {users: [
+        { id: 1, username: 'testUser', email: 'test@test.com', admin: true },
+        { id: 2, username: 'testing', email: 'testing@test.com', admin: false }
+      ]
+      }
+    }
+  });
+};
+
 var editUserEndpoint = function() {
   $.fauxjax.new({
     request: {
@@ -48,4 +65,4 @@ var loginUser = function() {
 };
 
 
-export { loginEndpoint, loginUser, getUserEndpoint, editUserEndpoint };
+export { loginEndpoint, loginUser, getUserEndpoint, getUsersEndpoint, editUserEndpoint };

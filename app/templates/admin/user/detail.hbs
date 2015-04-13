@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="small-offset-3 medium-6 columns">
+    <h3 class="edit-user">Edit User: {{ model.username }}</h3>
+    <form {{action "save" on="submit"}}>
+        <label>Username</label>
+        {{input type="text" id="username" value=model.username placeholder="Username"}}
+
+        <label>Email</label>
+        {{input type="text" id="email" value=model.email placeholder="Email Address"}}
+
+        <label>Admin</label>
+        {{input type="checkbox" id="admin" checked=model.admin}}
+      <br>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>

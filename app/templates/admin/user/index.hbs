@@ -1,0 +1,23 @@
+<div class="row middle">
+  <div class="small-offset-3 medium-6 columns">
+    <h3>Users</h3>
+    <table>
+      <thead>
+        <tr>
+          <td>Username</td>
+          <td>Email</td>
+          <td>Admin</td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |user|}}
+        <tr id="{{ user.userId }}">
+            <td class="username">{{#link-to 'admin.user.detail' user.id}}{{ user.username }}{{/link-to}}</td>
+            <td class="email">{{ user.email }}</td>
+            <td class="admin">{{ user.admin }}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
