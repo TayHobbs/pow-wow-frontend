@@ -32,9 +32,8 @@ export default Ember.Controller.extend({
         return;
       }
 
-      this.store.find('user', this.get('localStorageProxy.userId')).then((user) => {
-        user.set('password', password);
-        user.save();
+      this.model.set('password', password);
+      this.model.save().then((user) => {
         Ember.get(this, 'flashMessages').add({
           message: 'Password successfully changed!', sticky: ENV.stickyFlash
         });
