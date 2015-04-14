@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 
   actions: {
     updateUser: function() {
-      this.model.password = ''; // Currently necessary so that Rails won't try to set the password to nil
+      this.model.set('password', ''); // Currently necessary so that Rails won't try to set the password to nil
       this.model.save().then((user) => {
         this.set('localStorageProxy.username', user.get('username'));
         Ember.get(this, 'flashMessages').add({
