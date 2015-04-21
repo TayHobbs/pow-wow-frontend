@@ -2,13 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   beforeModel: function(transition) {
-    if (!this.get('localStorageProxy.accessToken')) {
-      this.redirectToLogin(transition);
-    } else {
-      Ember.$.ajaxSetup({
-        headers: { 'Authorization': this.get('localStorageProxy.accessToken') }
-      });
-    }
+    if (!this.get('localStorageProxy.accessToken')) { this.redirectToLogin(transition); }
   },
 
   redirectToLogin: function(transition) {
