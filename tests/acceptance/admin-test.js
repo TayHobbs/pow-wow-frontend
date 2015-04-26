@@ -56,7 +56,7 @@ test('admin.users route shows list of users', function(assert) {
   });
 });
 
-test('admin.users route shows list of users', function(assert) {
+test('admin.users.detail route shows a specific user', function(assert) {
   loginUser();
   getUsersEndpoint();
   editUserEndpoint();
