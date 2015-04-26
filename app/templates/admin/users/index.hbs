@@ -12,7 +12,7 @@
       <tbody>
         {{#each model as |user|}}
         <tr id="{{ user.userId }}">
-            <td class="username">{{#link-to 'admin.user.detail' user.id}}{{ user.username }}{{/link-to}}</td>
+            <td class="username">{{#link-to 'admin.users.detail' user.id}}{{ user.username }}{{/link-to}}</td>
             <td class="email">{{ user.email }}</td>
             <td class="admin">{{ user.admin }}</td>
           </tr>

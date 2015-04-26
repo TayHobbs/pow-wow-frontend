@@ -26,7 +26,7 @@ test('visiting /admin', function(assert) {
   });
 });
 
-test('admin.user route shows list of users', function(assert) {
+test('admin.users route shows list of users', function(assert) {
   loginUser();
   getUsersEndpoint();
   $.fauxjax.new({
@@ -43,7 +43,7 @@ test('admin.user route shows list of users', function(assert) {
       }
     }
   });
-  visit('/admin/user');
+  visit('/admin/users');
 
   andThen(function() {
     assert.equal(find('#user-1 .username').text(), 'testUser');
@@ -56,11 +56,11 @@ test('admin.user route shows list of users', function(assert) {
   });
 });
 
-test('admin.user route shows list of users', function(assert) {
+test('admin.users route shows list of users', function(assert) {
   loginUser();
   getUsersEndpoint();
   editUserEndpoint();
-  visit('/admin/user/1');
+  visit('/admin/users/1');
 
   andThen(function() {
     assert.equal(find('.edit-user').text(), 'Edit User: testUser');
