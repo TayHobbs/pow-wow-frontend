@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   errors: [],
 
   actions: {
+
     updateUser: function() {
       this.model.set('password', ''); // Currently necessary so that Rails won't try to set the password to nil
       this.model.save().then((user) => {
@@ -24,6 +25,7 @@ export default Ember.Controller.extend({
         }
       });
     },
+
     updatePassword: function() {
       let password = this.get('password');
 

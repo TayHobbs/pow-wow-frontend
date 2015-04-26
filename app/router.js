@@ -12,8 +12,8 @@ Router.map(function() {
       this.route('detail', { path: '/:user_id' })
     });
   });
-  this.route('authentication', {path: '/'}, function() {
-    this.route('login', {path: '/login'});
+  this.route('authentication', { path: '/' }, function() {
+    this.route('login', { path: '/login' });
   });
   this.route('account', function() {
     this.route('delete');
