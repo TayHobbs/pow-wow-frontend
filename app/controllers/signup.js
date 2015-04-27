@@ -6,7 +6,7 @@ export default Ember.Controller.extend(Login, {
   errors: [],
 
   actions: {
-    signUp: function() {
+    signUp() {
       this.set('errors', []);
 
       let user = this.store.createRecord( 'user', this.getProperties('username', 'email', 'password'));

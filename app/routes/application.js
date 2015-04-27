@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   actions: {
-    logout: function() {
+    logout() {
       this.set('localStorageProxy.accessToken', null);
       this.set('localStorageProxy.userId', null);
       this.set('localStorageProxy.username', null);
