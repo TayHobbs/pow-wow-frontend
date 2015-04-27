@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
       }
 
       this.model.set('password', password);
-      this.model.save().then((user) => {
+      this.model.save().then(() => {
         Ember.get(this, 'flashMessages').add({
           message: 'Password successfully changed!', sticky: ENV.stickyFlash
         });
