@@ -67,3 +67,43 @@ test('failed login', function(assert) {
     assert.equal(find('.flash-message').text().trim(), 'Incorrect username or password, please try again', 'Error message not displayed');
   });
 });
+
+test('forgotten password success', function(assert) {
+  $.fauxjax.new({
+    request: {
+      method: 'GET',
+      url: `${ENV.apiDomain}/users/test@test.com/forgot`,
+    },
+    response: {
+      status: 200
+    }
+  });
+
+  visit('/forgotten-password');
+
+  fillIn('#email', 'test@test.com');
+  click('button[type=submit]');
+  andThen(function() {
+    assert.equal(find('#success').text().trim(), 'Email successfully sent, check your inbox!', 'Success message not displayed');
+  });
+});
+
+test('forgotten password error', function(assert) {
+  $.fauxjax.new({
+    request: {
+      method: 'GET',
+      url: `${ENV.apiDomain}/users/test@test.com/forgot`,
+    },
+    response: {
+      status: 400
+    }
+  });
+
+  visit('/forgotten-password');
+
+  fillIn('#email', 'test@test.com');
+  click('button[type=submit]');
+  andThen(function() {
+    assert.equal(find('.flash-message').text().trim(), 'We have no record of that email, please enter another.', 'Error message not displayed');
+  });
+});

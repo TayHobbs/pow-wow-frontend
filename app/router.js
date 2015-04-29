@@ -20,6 +20,7 @@ Router.map(function() {
     this.route('edit');
   });
   this.route('signup');
+  this.route('forgotten-password');
 });
 
 export default Router;
