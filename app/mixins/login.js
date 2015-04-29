@@ -27,6 +27,7 @@ export default Ember.Mixin.create({
         this.set('localStorageProxy.accessToken', apiKey.access_token);
         this.set('localStorageProxy.userId', apiKey.user_id);
         this.set('localStorageProxy.username', results.username);
+        this.set('localStorageProxy.email', results.email);
 
         if (attemptedTransition) {
           attemptedTransition.retry();
