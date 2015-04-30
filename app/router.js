@@ -9,7 +9,7 @@ Router.map(function() {
   this.route('index');
   this.route('admin', function() {
     this.route('users', function() {
-      this.route('detail', { path: '/:user_id' })
+      this.route('detail', { path: '/:user_id' });
     });
   });
   this.route('authentication', { path: '/' }, function() {

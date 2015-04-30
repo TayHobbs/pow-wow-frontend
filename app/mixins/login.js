@@ -36,7 +36,7 @@ export default Ember.Mixin.create({
           router.transitionTo('index');
         }
       },
-      error: (jqXHR, status, error) => {
+      error: (jqXHR) => {
         Ember.run.later(() => {
           Ember.get(this, 'flashMessages').add({
             message: 'Incorrect username or password, please try again', sticky: ENV.stickyFlash

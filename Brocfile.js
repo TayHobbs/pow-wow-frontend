@@ -2,9 +2,7 @@
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var app = new EmberApp({
-  hinting: false
-});
+var app = new EmberApp();
 
 
 if (app.env === 'test' || app.env === 'development') {

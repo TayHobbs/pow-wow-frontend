@@ -5,6 +5,7 @@
     "location",
     "setTimeout",
     "$",
+    "localStorage",
     "-Promise",
     "define",
     "console",

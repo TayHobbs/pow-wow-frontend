@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
         this.transitionToRoute('account');
       }, (error) => {
         if (error && error.errors) {
-          for(const key in error.errors){
+          for(let key in error.errors){
             // check also if property is not inherited from prototype
             if (error.errors.hasOwnProperty(key)) {
               this.errors.pushObject(key.concat(' ', error.errors[key], '.'));
