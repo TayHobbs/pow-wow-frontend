@@ -73,7 +73,6 @@ test('clicking no button takes you back to account.index', function(assert) {
 });
 
 test('delete user account', function(assert) {
-  assert.equal(localStorage.accessToken, null);
   loginUser();
   $.fauxjax.new({
     request: {
