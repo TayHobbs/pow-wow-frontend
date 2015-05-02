@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
           for(let key in error.errors){
             // check also if property is not inherited from prototype
             if (error.errors.hasOwnProperty(key)) {
-              this.errors.pushObject(key.concat(' ', error.errors[key], '.'));
+              this.errors.pushObject(`${key} ${error.errors[key]}.`);
             }
           }
         }

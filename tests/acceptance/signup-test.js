@@ -40,7 +40,7 @@ test('display error messages when there is an error creating a user', function(a
   $.fauxjax.new({
     request: {
       type: 'POST',
-      url: ENV.apiDomain.concat('/users'),
+      url: `${ENV.apiDomain}/users`,
       data: JSON.stringify({user: {username: 'testUser', email: 'test@test.com', password: 'testing1', admin:false}}),
       dataType: 'json'
     },
@@ -77,7 +77,7 @@ test('can create new user and store token in local storage automatically', funct
   $.fauxjax.new({
     request: {
       type: 'POST',
-      url: ENV.apiDomain.concat('/users'),
+      url: `${ENV.apiDomain}/users`,
       data: JSON.stringify({user: {username: 'testUser', email: 'test@test.com', password: 'testing1', admin:false}}),
       dataType: 'json'
     },

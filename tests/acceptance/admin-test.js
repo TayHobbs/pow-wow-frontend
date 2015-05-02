@@ -32,7 +32,7 @@ test('admin.users route shows list of users', function(assert) {
   $.fauxjax.new({
     request: {
       type: 'GET',
-      url: ENV.apiDomain.concat('/users'),
+      url: `${ENV.apiDomain}/users`,
       headers: {Authorization: 'abc123'}
     },
     response: {

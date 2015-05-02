@@ -78,7 +78,7 @@ test('delete user account', function(assert) {
   $.fauxjax.new({
     request: {
       type: 'DELETE',
-      url: ENV.apiDomain.concat('/users/1'),
+      url: `${ENV.apiDomain}/users/1`,
       headers: {Authorization: 'abc123'}
     },
     response: {
@@ -134,7 +134,7 @@ test('edit user password', function(assert) {
   $.fauxjax.new({
     request: {
       type: 'PUT',
-      url: ENV.apiDomain.concat('/users/1'),
+      url: `${ENV.apiDomain}/users/1`,
       headers: {Authorization: 'abc123'},
       data: JSON.stringify({user: {username: 'test', email: 'test@test.com', password: 'test1', admin: false}})
     },

@@ -14,7 +14,7 @@ export default Ember.Route.extend({
 
   actions: {
     error(error, transition) {
-      console.log('Error status: '.concat(error.status));
+      console.log(`Error status: ${error.status}`);
       this.redirectToLogin(transition);
     }
   }

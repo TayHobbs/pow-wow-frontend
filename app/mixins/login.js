@@ -19,7 +19,7 @@ export default Ember.Mixin.create({
     let router = this.get('target');
     Ember.$.ajax({
       method: 'POST',
-      url: ENV.apiDomain.concat('/session'),
+      url: `${ENV.apiDomain}/session`,
       data: {login: login, password: password},
       success: (results) => {
         let apiKey = results.api_key;

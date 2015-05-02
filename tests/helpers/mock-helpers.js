@@ -4,7 +4,7 @@ var loginEndpoint = function() {
   $.fauxjax.new({
     request: {
       method: 'POST',
-      url: ENV.apiDomain.concat('/session'),
+      url: `${ENV.apiDomain}/session`,
       data: {login: 'test@test.com', password: 'testing1'}
     },
     response: {
@@ -17,7 +17,7 @@ var getUserEndpoint = function() {
   $.fauxjax.new({
     request: {
       type: 'GET',
-      url: ENV.apiDomain.concat('/users/1'),
+      url: `${ENV.apiDomain}/users/1`,
       headers: {Authorization: 'abc123'},
     },
     response: {
@@ -30,7 +30,7 @@ var getUsersEndpoint = function() {
   $.fauxjax.new({
     request: {
       type: 'GET',
-      url: ENV.apiDomain.concat('/users'),
+      url: `${ENV.apiDomain}/users`,
       headers: {Authorization: 'abc123'}
     },
     response: {
@@ -47,7 +47,7 @@ var editUserEndpoint = function() {
   $.fauxjax.new({
     request: {
       type: 'PUT',
-      url: ENV.apiDomain.concat('/users/1'),
+      url: `${ENV.apiDomain}/users/1`,
       headers: {Authorization: 'abc123'},
       data: JSON.stringify({user: {username: "test", email: "testUser@test.com", password: null, admin: false}})
     },

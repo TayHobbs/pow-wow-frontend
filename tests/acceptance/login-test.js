@@ -49,7 +49,7 @@ test('failed login', function(assert) {
   $.fauxjax.new({
     request: {
       method: 'POST',
-      url: ENV.apiDomain.concat('/session'),
+      url: `${ENV.apiDomain}/session`,
       data: {login: 'test@test.com', password: 'testing1'}
     },
     response: {
