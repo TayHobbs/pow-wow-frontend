@@ -1,1 +1,1 @@
-#Pow Wow Frontend [![Build Status](https://travis-ci.org/TayHobbs/pow-wow-frontend.svg?branch=master)](https://travis-ci.org/TayHobbs/pow-wow-frontend)
+#Pow Wow Frontend [![Build Status](https://travis-ci.org/TayHobbs/pow-wow-frontend.svg?branch=master)](https://travis-ci.org/TayHobbs/pow-wow-frontend) [![Code Climate](https://codeclimate.com/github/TayHobbs/pow-wow-frontend/badges/gpa.svg)](https://codeclimate.com/github/TayHobbs/pow-wow-frontend)
