@@ -68,7 +68,7 @@ test('failed login', function(assert) {
   });
 });
 
-test('forgotten password success', function(assert) {
+test('successfully resetting password returns success flash message', function(assert) {
   $.fauxjax.new({
     request: {
       method: 'GET',
@@ -88,7 +88,7 @@ test('forgotten password success', function(assert) {
   });
 });
 
-test('forgotten password error', function(assert) {
+test('incorrect email for forgotten password form shows flash message', function(assert) {
   $.fauxjax.new({
     request: {
       method: 'GET',
