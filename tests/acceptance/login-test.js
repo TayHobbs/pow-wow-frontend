@@ -6,12 +6,12 @@ import { loginEndpoint, getUserEndpoint } from '../helpers/mock-helpers';
 import ENV from 'pow-wow-frontend/config/environment';
 
 let application;
+$.fauxjax.settings.strictMatching = false;
 
 module('Acceptance: Login', {
   beforeEach: function() {
     application = startApp();
     localStorage.clear();
-    $.fauxjax.settings.strictMatching = false;
   },
 
   afterEach: function() {

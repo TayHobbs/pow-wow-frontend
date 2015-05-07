@@ -6,13 +6,13 @@ import { loginEndpoint, loginUser, getUserEndpoint, editUserEndpoint } from '../
 import ENV from 'pow-wow-frontend/config/environment';
 
 let application;
+$.fauxjax.settings.debug = true;
+$.fauxjax.settings.strictMatching = false;
 
 module('Acceptance: Account', {
   beforeEach: function() {
     application = startApp();
     localStorage.clear();
-    $.fauxjax.settings.debug = true;
-    $.fauxjax.settings.strictMatching = false;
   },
 
   afterEach: function() {

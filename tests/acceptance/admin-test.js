@@ -6,11 +6,11 @@ import ENV from 'pow-wow-frontend/config/environment';
 import { loginUser, getUsersEndpoint, editUserEndpoint  } from '../helpers/mock-helpers';
 
 let application;
+$.fauxjax.settings.strictMatching = false;
 
 module('Acceptance: Admin', {
   beforeEach: function() {
     application = startApp();
-    $.fauxjax.settings.strictMatching = false;
   },
 
   afterEach: function() {
