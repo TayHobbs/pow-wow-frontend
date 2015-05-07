@@ -129,17 +129,7 @@ test('successfully editing user account displays flash message', function(assert
 test('edit user password', function(assert) {
   loginUser();
   getUserEndpoint();
-  $.fauxjax.new({
-    request: {
-      type: 'PUT',
-      url: `${ENV.apiDomain}/users/1`,
-      headers: {Authorization: 'abc123'},
-      data: JSON.stringify({user: {username: 'test', email: 'test@test.com', password: 'test1', admin: false}})
-    },
-    response: {
-      content: {user:{id:1}}
-    }
-  });
+  editUserEndpoint();
 
   visit('/account/edit');
 
