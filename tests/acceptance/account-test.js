@@ -81,8 +81,7 @@ test('delete user account', function(assert) {
       headers: {Authorization: 'abc123'}
     },
     response: {
-      // This is required for some reason, even though the real response is {}
-      content: {user:{id:1}}
+      status: 204
     }
   });
 
@@ -138,7 +137,6 @@ test('edit user password', function(assert) {
       data: JSON.stringify({user: {username: 'test', email: 'test@test.com', password: 'test1', admin: false}})
     },
     response: {
-      // This is required for some reason, even though the real response is {}
       content: {user:{id:1}}
     }
   });
