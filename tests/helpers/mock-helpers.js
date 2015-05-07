@@ -52,16 +52,21 @@ var editUserEndpoint = function() {
       data: JSON.stringify({user: {username: "test", email: "testUser@test.com", password: null, admin: false}})
     },
     response: {
-      // This is required for some reason, even though the real response is {}
       content: {user:{id:1}}
     }
   });
 };
 
 var loginUser = function() {
-  localStorage.accessToken = 'abc123';
-  localStorage.userId = 1;
-  localStorage.username = 'testUser';
+  loginEndpoint();
+  getUserEndpoint();
+  visit('/login');
+
+  andThen(function() {
+    fillIn('#login', 'test@test.com');
+    fillIn('#password', 'testing1');
+    click('button[type=submit]');
+  });
 };
 
 
