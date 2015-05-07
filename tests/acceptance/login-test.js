@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 
-import { loginEndpoint } from '../helpers/mock-helpers';
+import { loginEndpoint, getUserEndpoint } from '../helpers/mock-helpers';
 import ENV from 'pow-wow-frontend/config/environment';
 
 let application;
@@ -30,6 +30,7 @@ test('visiting /login', function(assert) {
 
 test('login', function(assert) {
   assert.equal(localStorage.accessToken, null);
+  getUserEndpoint();
   loginEndpoint();
   visit('/login');
 

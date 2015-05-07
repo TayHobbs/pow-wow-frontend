@@ -23,6 +23,10 @@ export default Ember.Mixin.create({
       data: {login: login, password: password},
       success: (results) => {
         let apiKey = results.api_key;
+        Ember.run(() => {
+          this.store.find('user', apiKey.user_id);
+        });
+
         ENV.APP.authToken = apiKey;
         this.set('localStorageProxy.accessToken', apiKey.access_token);
         this.set('localStorageProxy.userId', apiKey.user_id);
