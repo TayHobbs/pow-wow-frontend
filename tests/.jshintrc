@@ -6,6 +6,7 @@
     "setTimeout",
     "$",
     "localStorage",
+    "_",
     "-Promise",
     "define",
     "console",
