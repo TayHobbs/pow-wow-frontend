@@ -19,6 +19,7 @@ module('Acceptance: Admin', {
 });
 
 test('visiting /admin', function(assert) {
+  loginUser();
   visit('/admin');
 
   andThen(function() {
