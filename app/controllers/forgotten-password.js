@@ -12,9 +12,7 @@ export default Ember.Controller.extend({
         },
         error: (jqXHR) => {
           Ember.run.later(() => {
-            Ember.get(this, 'flashMessages').add({
-              message: 'We have no record of that email, please enter another.', sticky: ENV.stickyFlash
-            });
+            Ember.get(this, 'flashMessages').alert('We have no record of that email, please enter another.', { sticky: ENV.stickyFlash });
           });
           return jqXHR;
         }

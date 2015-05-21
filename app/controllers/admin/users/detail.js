@@ -7,9 +7,7 @@ export default Ember.Controller.extend({
       this.model.set('password', ''); // Currently necessary so that Rails won't try to set the password to nil
       this.model.save();
       this.transitionToRoute('admin.users');
-      Ember.get(this, 'flashMessages').add({
-        message: 'User information successfully changed!', sticky: ENV.stickyFlash
-      });
+      Ember.get(this, 'flashMessages').success('User information successfully changed!', { sticky: ENV.stickyFlash });
     }
   }
 });

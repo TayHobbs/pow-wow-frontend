@@ -42,9 +42,7 @@ export default Ember.Mixin.create({
       },
       error: (jqXHR) => {
         Ember.run.later(() => {
-          Ember.get(this, 'flashMessages').add({
-            message: 'Incorrect username or password, please try again', sticky: ENV.stickyFlash
-          });
+          Ember.get(this, 'flashMessages').alert('Incorrect username or password, please try again', { sticky: ENV.stickyFlash });
         });
         return jqXHR;
       }
