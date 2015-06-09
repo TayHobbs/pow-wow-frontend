@@ -19,6 +19,9 @@ Router.map(function() {
     this.route('delete');
     this.route('edit');
   });
+  this.route('project', function() {
+    this.route('create');
+  });
   this.route('signup');
   this.route('forgotten-password');
 });

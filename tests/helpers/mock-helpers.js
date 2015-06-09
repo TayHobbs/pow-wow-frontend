@@ -69,5 +69,25 @@ var loginUser = function() {
   });
 };
 
+var projectsListMock = function() {
+  $.fauxjax.new({
+    request: {
+      type: 'GET',
+      url: `${ENV.apiDomain}/projects`,
+      headers: {Authorization: 'abc123'},
+    },
+    response: {
+      content: {
+        projects: [
+          {
+            id: 1,
+            name: 'Project 1',
+            owner: 1
+          }
+        ]
+      }
+    }
+  });
+};
 
-export { loginEndpoint, loginUser, getUserEndpoint, getUsersEndpoint, editUserEndpoint };
+export { loginEndpoint, loginUser, getUserEndpoint, getUsersEndpoint, editUserEndpoint, projectsListMock };

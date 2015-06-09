@@ -1,0 +1,22 @@
+<div class="row middle">
+  <div class="small-offset-3 medium-6 columns">
+    <h3>Projects</h3>
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Owner</td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |project|}}
+          <tr id="{{ project.projectId }}">
+            <td class="project-name">{{ project.name }}</td>
+            <td class="project-owner">{{ project.owner }}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
