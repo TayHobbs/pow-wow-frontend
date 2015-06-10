@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="small-offset-3 medium-6 columns">
+    <h3 class="edit-user">Create Project</h3>
+    <form {{action "createProject" on="submit"}}>
+        <label>Project Name:</label>
+        {{input type="text" id="project-name" value=name placeholder="Project Name"}}
+      <br>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>
+

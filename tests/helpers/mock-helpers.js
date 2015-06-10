@@ -90,4 +90,24 @@ var projectsListMock = function() {
   });
 };
 
-export { loginEndpoint, loginUser, getUserEndpoint, getUsersEndpoint, editUserEndpoint, projectsListMock };
+var createProjectMock = function() {
+  $.fauxjax.new({
+    request: {
+      type: 'POST',
+      url: `${ENV.apiDomain}/projects`,
+      headers: {Authorization: 'abc123'},
+    },
+    response: {
+      content: {
+        project: {
+          id: 2,
+          name: 'Project 2',
+          owner: 1
+        }
+      }
+    }
+  });
+};
+
+
+export { loginEndpoint, loginUser, getUserEndpoint, getUsersEndpoint, editUserEndpoint, projectsListMock, createProjectMock };

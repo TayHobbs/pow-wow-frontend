@@ -24,3 +24,16 @@ test('can see list of project', function(assert) {
     assert.equal(find('#project-1 .project-name').text(), 'Project 1');
   });
 });
+
+test('can create project', function(assert) {
+  projectsListMock();
+  loginUser();
+  createProjectMock();
+  visit('/project/create');
+  fillIn('#project-name', 'Project 2');
+  click('button[type=submit]');
+  andThen(function() {
+    assert.equal(currentURL(), 'project');
+    assert.equal(find('#project-2 .project-name').text(), 'Project 2');
+  });
+});
