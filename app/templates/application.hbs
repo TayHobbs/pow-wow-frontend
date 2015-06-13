@@ -1,27 +1,4 @@
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1>{{link-to 'Pow Wow' 'index'}}</h1>
-    </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      {{#unless currentUser}}
-        <li>{{link-to 'Register' 'signup' id="register"}}</li>
-        <li>{{link-to 'Login' 'authentication.login'}}</li>
-      {{else}}
-      <li id="current-user"><i class="glyphicon glyphicon-user"></i> {{currentUser}}</li>
-        <li>{{link-to "Account" "account" id="account"}}</li>
-        <li id="logout"{{action "logout"}}><a href="#">Logout</a></li>
-      {{/unless}}
-    </ul>
-
-  </section>
-</nav>
+{{nav-bar logout=(action 'logout')}}
 
 <div class="{{if flashMessages.queue '' 'flash-message-jump-fix'}}"></div>
 {{#each flashMessages.queue as |flash|}}
