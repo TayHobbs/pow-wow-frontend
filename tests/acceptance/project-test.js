@@ -33,7 +33,7 @@ test('can create project', function(assert) {
   fillIn('#project-name', 'Project 2');
   click('button[type=submit]');
   andThen(function() {
-    assert.equal(currentURL(), 'project');
-    assert.equal(find('#project-2 .project-name').text(), 'Project 2');
+    assert.equal(currentURL(), '/project');
+    assert.equal(find('.project-name:eq(1)').text(), 'Project 2');
   });
 });
