@@ -2,7 +2,7 @@
   <div class="small-6 small-offset-3">
     <h1>Signup Now</h1>
 
-    {{#each errors as |error|}}
+    {{#each errors key="@guid" as |error|}}
       <div class="alert-box alert error">{{error}}</div>
     {{/each}}
 

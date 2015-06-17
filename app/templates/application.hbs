@@ -1,7 +1,7 @@
 {{nav-bar logout=(action 'logout')}}
 
 <div class="{{if flashMessages.queue '' 'flash-message-jump-fix'}}"></div>
-{{#each flashMessages.queue as |flash|}}
+{{#each flashMessages.queue key="@guid" as |flash|}}
   {{flash-message flash=flash class='flash-message alert-box'}}
 {{/each}}
 

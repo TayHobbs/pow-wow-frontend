@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each model as |user|}}
+        {{#each model key="@guid" as |user|}}
         <tr id="{{ user.userId }}">
             <td class="username">{{#link-to 'admin.users.detail' user.id}}{{ user.username }}{{/link-to}}</td>
             <td class="email">{{ user.email }}</td>
