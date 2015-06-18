@@ -56,7 +56,7 @@ test('display error messages when there is an error creating a user', function(a
   fillIn('#password', 'testing1');
   click('button[type=submit]');
   andThen(function() {
-    assert.equal(find('.error').text().trim(), 'username has already been taken.');
+    assert.equal(find('.error').text().trim(), 'Username has already been taken.');
   });
 });
 
