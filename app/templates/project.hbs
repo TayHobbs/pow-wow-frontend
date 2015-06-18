@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each model key="@guid" as |project|}}
+        {{#each model as |project|}}
           <tr id="{{ project.projectId }}">
             <td class="project-name">{{ project.name }}</td>
             <td class="project-owner">{{ project.owner }}</td>
